@@ -32,11 +32,6 @@ class SelectableCountryStoreTableExpander implements CountryStoreTableExpanderIn
      */
     protected const CHECKBOX_CLASS = 'js-country-checkbox';
 
-    /**
-     * @param \Spryker\Zed\Gui\Communication\Table\TableConfiguration $config
-     *
-     * @return \Spryker\Zed\Gui\Communication\Table\TableConfiguration
-     */
     public function expandConfiguration(TableConfiguration $config): TableConfiguration
     {
         $config->setHeader(
@@ -50,11 +45,6 @@ class SelectableCountryStoreTableExpander implements CountryStoreTableExpanderIn
         return $config;
     }
 
-    /**
-     * @param string $urlPath
-     *
-     * @return string
-     */
     public function expandUrlPath(string $urlPath): string
     {
         return $urlPath . static::URL_PATH_PREFIX_SELECTABLE;

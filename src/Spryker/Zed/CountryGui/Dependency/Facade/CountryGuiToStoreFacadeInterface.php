@@ -9,8 +9,5 @@ namespace Spryker\Zed\CountryGui\Dependency\Facade;
 
 interface CountryGuiToStoreFacadeInterface
 {
-    /**
-     * @return bool
-     */
     public function isDynamicStoreEnabled(): bool;
 }

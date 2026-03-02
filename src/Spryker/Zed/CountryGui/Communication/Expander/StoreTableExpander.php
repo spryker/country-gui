@@ -28,19 +28,11 @@ class StoreTableExpander implements StoreTableExpanderInterface
      */
     protected CountryGuiToStoreFacadeInterface $storeFacade;
 
-    /**
-     * @param \Spryker\Zed\CountryGui\Dependency\Facade\CountryGuiToStoreFacadeInterface $storeFacade
-     */
     public function __construct(CountryGuiToStoreFacadeInterface $storeFacade)
     {
         $this->storeFacade = $storeFacade;
     }
 
-    /**
-     * @param \Spryker\Zed\Gui\Communication\Table\TableConfiguration $config
-     *
-     * @return \Spryker\Zed\Gui\Communication\Table\TableConfiguration
-     */
     public function expandConfig(TableConfiguration $config): TableConfiguration
     {
         /* Required by infrastructure, exists only for BC with DMS OFF mode. */

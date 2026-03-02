@@ -34,9 +34,6 @@ class AssignedCountryStoreTable extends CountryStoreTable
         $this->countryStoreQuery = $countryStoreQuery;
     }
 
-    /**
-     * @return string
-     */
     protected function getBaseUrlPath(): string
     {
         return 'assigned-country-table';

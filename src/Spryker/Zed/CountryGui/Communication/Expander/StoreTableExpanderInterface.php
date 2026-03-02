@@ -12,11 +12,6 @@ use Spryker\Zed\Gui\Communication\Table\TableConfiguration;
 
 interface StoreTableExpanderInterface
 {
-    /**
-     * @param \Spryker\Zed\Gui\Communication\Table\TableConfiguration $config
-     *
-     * @return \Spryker\Zed\Gui\Communication\Table\TableConfiguration
-     */
     public function expandConfig(TableConfiguration $config): TableConfiguration;
 
     /**

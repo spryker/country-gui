@@ -36,9 +36,6 @@ class AvailableCountryStoreTable extends CountryStoreTable
         $this->countryQuery = $countryQuery;
     }
 
-    /**
-     * @return string
-     */
     protected function getBaseUrlPath(): string
     {
         return 'available-country-table';

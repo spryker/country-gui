@@ -43,11 +43,6 @@ class AvailableCountriesStoreRelationTabs extends AbstractTabs
      */
     protected const ASSIGNED_TAB_TEMPLATE = '@CountryGui/_partials/_tables/assignment-country-table.twig';
 
-    /**
-     * @param \Generated\Shared\Transfer\TabsViewTransfer $tabsViewTransfer
-     *
-     * @return \Generated\Shared\Transfer\TabsViewTransfer
-     */
     protected function build(TabsViewTransfer $tabsViewTransfer): TabsViewTransfer
     {
         $this->addAvailableCountryTab($tabsViewTransfer)

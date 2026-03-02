@@ -31,9 +31,6 @@ use Twig\Environment;
  */
 class CountryGuiCommunicationFactory extends AbstractCommunicationFactory
 {
-    /**
-     * @return \Symfony\Component\Form\FormTypeInterface
-     */
     public function createStoreCountryForm(): FormTypeInterface
     {
         return new StoreCountryForm();
@@ -54,11 +51,6 @@ class CountryGuiCommunicationFactory extends AbstractCommunicationFactory
         );
     }
 
-    /**
-     * @param int|null $idStore
-     *
-     * @return \Spryker\Zed\CountryGui\Communication\Table\CountryStoreTable
-     */
     public function createSelectableAssignedCountryStoreTable(?int $idStore): CountryStoreTable
     {
         return new AssignedCountryStoreTable(
@@ -68,11 +60,6 @@ class CountryGuiCommunicationFactory extends AbstractCommunicationFactory
         );
     }
 
-    /**
-     * @param int|null $idStore
-     *
-     * @return \Spryker\Zed\CountryGui\Communication\Table\CountryStoreTable
-     */
     public function createSelectableAvailableCountryStoreTable(?int $idStore): CountryStoreTable
     {
         return new AvailableCountryStoreTable(
@@ -82,33 +69,21 @@ class CountryGuiCommunicationFactory extends AbstractCommunicationFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\CountryGui\Communication\Expander\CountryStoreTableExpanderInterface
-     */
     public function createCountryStoreTableSelectableExpander(): CountryStoreTableExpanderInterface
     {
         return new SelectableCountryStoreTableExpander();
     }
 
-    /**
-     * @return \Spryker\Zed\CountryGui\Dependency\Facade\CountryGuiToCountryFacadeInterface
-     */
     public function getCountryFacade(): CountryGuiToCountryFacadeInterface
     {
         return $this->getProvidedDependency(CountryGuiDependencyProvider::FACADE_COUNTRY);
     }
 
-    /**
-     * @return \Spryker\Zed\CountryGui\Dependency\Facade\CountryGuiToStoreFacadeInterface
-     */
     public function getStoreFacade(): CountryGuiToStoreFacadeInterface
     {
         return $this->getProvidedDependency(CountryGuiDependencyProvider::FACADE_STORE);
     }
 
-    /**
-     * @return \Spryker\Zed\CountryGui\Communication\Expander\StoreTableExpanderInterface
-     */
     public function createStoreTableExpander(): StoreTableExpanderInterface
     {
         return new StoreTableExpander($this->getStoreFacade());
@@ -130,25 +105,16 @@ class CountryGuiCommunicationFactory extends AbstractCommunicationFactory
         return $this->getProvidedDependency(CountryGuiDependencyProvider::PROPEL_QUERY_COUNTRY);
     }
 
-    /**
-     * @return \Twig\Environment
-     */
     public function getTwigEnvironment(): Environment
     {
         return $this->getProvidedDependency(CountryGuiDependencyProvider::RENDERER);
     }
 
-    /**
-     * @return \Spryker\Zed\CountryGui\Communication\Tabs\AvailableCountriesStoreRelationTabs
-     */
     public function createAvailableCountryRelationTabs(): AvailableCountriesStoreRelationTabs
     {
         return new AvailableCountriesStoreRelationTabs();
     }
 
-    /**
-     * @return \Spryker\Zed\CountryGui\Communication\Tabs\AssignedCountriesStoreRelationTabs
-     */
     public function createAssignedCountryRelationTabs(): AssignedCountriesStoreRelationTabs
     {
         return new AssignedCountriesStoreRelationTabs();

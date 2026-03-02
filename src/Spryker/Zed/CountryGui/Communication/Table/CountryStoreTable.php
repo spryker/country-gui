@@ -82,11 +82,6 @@ abstract class CountryStoreTable extends AbstractTable
         $this->countryStoreTableExpanders = $countryStoreTableExpanders;
     }
 
-    /**
-     * @param \Spryker\Zed\Gui\Communication\Table\TableConfiguration $config
-     *
-     * @return \Spryker\Zed\Gui\Communication\Table\TableConfiguration
-     */
     protected function configure(TableConfiguration $config): TableConfiguration
     {
         $config->setHeader([
@@ -118,9 +113,6 @@ abstract class CountryStoreTable extends AbstractTable
         return $config;
     }
 
-    /**
-     * @return string
-     */
     protected function getUrlPath(): string
     {
         $path = $this->getBaseUrlPath();
@@ -150,9 +142,6 @@ abstract class CountryStoreTable extends AbstractTable
         return $preparedData;
     }
 
-    /**
-     * @return string
-     */
     abstract protected function getBaseUrlPath(): string;
 
     /**
@@ -162,9 +151,6 @@ abstract class CountryStoreTable extends AbstractTable
      */
     abstract protected function getRawData(TableConfiguration $config): array;
 
-    /**
-     * @return string
-     */
     protected function getUrl(): string
     {
         return Url::generate($this->getUrlPath(), [static::PARAM_STORE_ID => $this->idStore]);

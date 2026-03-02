@@ -11,18 +11,8 @@ use Spryker\Zed\Gui\Communication\Table\TableConfiguration;
 
 interface CountryStoreTableExpanderInterface
 {
-    /**
-     * @param \Spryker\Zed\Gui\Communication\Table\TableConfiguration $config
-     *
-     * @return \Spryker\Zed\Gui\Communication\Table\TableConfiguration
-     */
     public function expandConfiguration(TableConfiguration $config): TableConfiguration;
 
-    /**
-     * @param string $urlPath
-     *
-     * @return string
-     */
     public function expandUrlPath(string $urlPath): string;
 
     /**
