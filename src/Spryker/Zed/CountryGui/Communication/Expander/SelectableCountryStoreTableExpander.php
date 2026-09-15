@@ -32,6 +32,18 @@ class SelectableCountryStoreTableExpander implements CountryStoreTableExpanderIn
      */
     protected const CHECKBOX_CLASS = 'js-country-checkbox';
 
+    /**
+     * @param string $moveToSelector Selector of the table the selected countries are moved to.
+     * @param string $inputSelector Selector of the input carrying the selected country codes.
+     * @param string $counterHolderSelector Selector of the tab label the selection counter is appended to.
+     */
+    public function __construct(
+        protected string $moveToSelector = '',
+        protected string $inputSelector = '',
+        protected string $counterHolderSelector = '',
+    ) {
+    }
+
     public function expandConfiguration(TableConfiguration $config): TableConfiguration
     {
         $config->setHeader(
@@ -41,6 +53,19 @@ class SelectableCountryStoreTableExpander implements CountryStoreTableExpanderIn
         );
 
         $config->addRawColumn(static::COLUMN_SELECT_CHECKBOX);
+
+        // The checkbox column above is only half of the selection; the other half is the behaviour the
+        // Gui table orchestrator attaches to it, which is configured here so that both stay together.
+        $config->setTableAttributes($config->getTableAttributes() + [
+            'data-selectable' => [
+                'moveToSelector' => $this->moveToSelector,
+                'inputSelector' => $this->inputSelector,
+                'counterHolderSelector' => $this->counterHolderSelector,
+                'checkboxSelector' => '.' . static::CHECKBOX_CLASS,
+                'colId' => CountryStoreTable::COLUMN_ISO2_CODE,
+                'colSelection' => static::COLUMN_SELECT_CHECKBOX,
+            ],
+        ]);
 
         return $config;
     }

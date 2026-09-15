@@ -5,6 +5,12 @@
 
 'use strict';
 
+/**
+ * @deprecated Will be removed in the next major version. The behaviour this file implements is now
+ * provided by the Gui table library and configured from PHP through the `data-selectable` table attribute (see \Spryker\Zed\CountryGui\Communication\Expander\SelectableCountryStoreTableExpander).
+ * Kept only so that projects still requiring this file keep working.
+ */
+
 var SelectCountryTableAPI = function () {
     this.selectedCountriesData = [];
     this.removeBtnSelector = '.js-remove-item';

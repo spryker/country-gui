@@ -5,27 +5,13 @@
 
 'use strict';
 
-var SelectCountryTableAPI = require('../select-country-table-api/select-country-table-api');
+/**
+ * @deprecated Will be removed in the next major version.
+ *
+ * Table selection is now configured from PHP via `setTableAttributes(['data-selectable' => ...])`.
+ * This file is intentionally a no-op: it is kept only so that projects referencing it keep
+ * building. Re-running the old wiring here would initialise the table a second time, on top of
+ * the one the Gui table library already created.
+ */
 
-$(document).ready(function () {
-    var availableCountriesTable = new SelectCountryTableAPI();
-    var assignedCountriesTable = new SelectCountryTableAPI();
-
-    availableCountriesTable.init(
-        '#available-country-table',
-        '#countriesToBeAssigned',
-        '.js-country-checkbox',
-        'a[href="#tab-content-assignment_country"]',
-        '#store_countryCodesToBeAssigned',
-    );
-
-    assignedCountriesTable.init(
-        '#assigned-country-table',
-        '#countriesToBeUnassigned',
-        '.js-country-checkbox',
-        'a[href="#tab-content-deassignment_country"]',
-        '#store_countryCodesToBeDeAssigned',
-    );
-});
-
-module.exports = SelectCountryTableAPI;
+module.exports = require('../select-country-table-api/select-country-table-api');

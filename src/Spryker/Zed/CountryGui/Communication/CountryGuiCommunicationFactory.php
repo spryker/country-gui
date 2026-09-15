@@ -31,6 +31,40 @@ use Twig\Environment;
  */
 class CountryGuiCommunicationFactory extends AbstractCommunicationFactory
 {
+    /**
+     * @uses \Spryker\Zed\CountryGui\Presentation\_partials\_tables\assignment-country-table.twig
+     *
+     * @var string
+     */
+    protected const SELECTOR_TABLE_COUNTRIES_TO_BE_ASSIGNED = '#countriesToBeAssigned';
+
+    /**
+     * @uses \Spryker\Zed\CountryGui\Presentation\_partials\_tables\unassignment-country-table.twig
+     *
+     * @var string
+     */
+    protected const SELECTOR_TABLE_COUNTRIES_TO_BE_UNASSIGNED = '#countriesToBeUnassigned';
+
+    /**
+     * @var string
+     */
+    protected const SELECTOR_INPUT_COUNTRY_CODES_TO_BE_ASSIGNED = '#store_countryCodesToBeAssigned';
+
+    /**
+     * @var string
+     */
+    protected const SELECTOR_INPUT_COUNTRY_CODES_TO_BE_DEASSIGNED = '#store_countryCodesToBeDeAssigned';
+
+    /**
+     * @var string
+     */
+    protected const SELECTOR_TAB_ASSIGNMENT_COUNTRY = 'a[href="#tab-content-assignment_country"]';
+
+    /**
+     * @var string
+     */
+    protected const SELECTOR_TAB_DEASSIGNMENT_COUNTRY = 'a[href="#tab-content-deassignment_country"]';
+
     public function createStoreCountryForm(): FormTypeInterface
     {
         return new StoreCountryForm();
@@ -55,7 +89,11 @@ class CountryGuiCommunicationFactory extends AbstractCommunicationFactory
     {
         return new AssignedCountryStoreTable(
             $idStore,
-            [$this->createCountryStoreTableSelectableExpander()],
+            [$this->createCountryStoreTableSelectableExpander(
+                static::SELECTOR_TABLE_COUNTRIES_TO_BE_UNASSIGNED,
+                static::SELECTOR_INPUT_COUNTRY_CODES_TO_BE_DEASSIGNED,
+                static::SELECTOR_TAB_DEASSIGNMENT_COUNTRY,
+            )],
             $this->getCountryStorePropelQuery(),
         );
     }
@@ -64,14 +102,28 @@ class CountryGuiCommunicationFactory extends AbstractCommunicationFactory
     {
         return new AvailableCountryStoreTable(
             $idStore,
-            [$this->createCountryStoreTableSelectableExpander()],
+            [$this->createCountryStoreTableSelectableExpander(
+                static::SELECTOR_TABLE_COUNTRIES_TO_BE_ASSIGNED,
+                static::SELECTOR_INPUT_COUNTRY_CODES_TO_BE_ASSIGNED,
+                static::SELECTOR_TAB_ASSIGNMENT_COUNTRY,
+            )],
             $this->getCountryPropelQuery(),
         );
     }
 
-    public function createCountryStoreTableSelectableExpander(): CountryStoreTableExpanderInterface
-    {
-        return new SelectableCountryStoreTableExpander();
+    /**
+     * @param string $moveToSelector Selector of the table the selected countries are moved to.
+     * @param string $inputSelector Selector of the input carrying the selected country codes.
+     * @param string $counterHolderSelector Selector of the tab label the selection counter is appended to.
+     *
+     * @return \Spryker\Zed\CountryGui\Communication\Expander\CountryStoreTableExpanderInterface
+     */
+    public function createCountryStoreTableSelectableExpander(
+        string $moveToSelector = '',
+        string $inputSelector = '',
+        string $counterHolderSelector = '',
+    ): CountryStoreTableExpanderInterface {
+        return new SelectableCountryStoreTableExpander($moveToSelector, $inputSelector, $counterHolderSelector);
     }
 
     public function getCountryFacade(): CountryGuiToCountryFacadeInterface
