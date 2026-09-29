@@ -75,8 +75,11 @@ var SelectCountryTableAPI = function () {
                 $('#' + self.$countryTable.attr('id') + ' ' + self.checkboxSelector),
             );
 
-            if (self.$inputWithSelectedCountries && initialSelectedCountriesData) {
-                var initialSelectedCountriesData = self.$inputWithSelectedCountries.val();
+            var initialSelectedCountriesData = self.$inputWithSelectedCountries
+                ? self.$inputWithSelectedCountries.val()
+                : '';
+
+            if (initialSelectedCountriesData) {
                 self.selectCountriesOnLoad(initialSelectedCountriesData);
                 self.$inputWithSelectedCountries.val('');
             }
@@ -93,9 +96,9 @@ var SelectCountryTableAPI = function () {
 
         checkboxes.off('change');
         checkboxes.on('change', function () {
-            var rowIndex = checkboxes.index($(this)),
-                rowData = countryTableData.data()[rowIndex],
-                id = rowData[0];
+            var rowIndex = checkboxes.index($(this));
+            var rowData = countryTableData.data()[rowIndex];
+            var id = rowData[0];
 
             if ($(this).is(':checked')) {
                 return self.addRow(rowData);
@@ -109,13 +112,13 @@ var SelectCountryTableAPI = function () {
      * Check for selected countries in country table.
      */
     this.updateCheckboxes = function () {
-        var countryTable = this.$countryTable.DataTable(),
-            countryTableData = countryTable.data();
+        var countryTable = this.$countryTable.DataTable();
+        var countryTableData = countryTable.data();
 
         for (var i = 0; i < countryTableData.length; i++) {
-            var countryItemData = countryTableData[i],
-                countryItemId = countryItemData[0],
-                checkBox = $(countryTable.row(i).node()).find('[type="checkbox"]');
+            var countryItemData = countryTableData[i];
+            var countryItemId = countryItemData[0];
+            var checkBox = $(countryTable.row(i).node()).find('[type="checkbox"]');
 
             checkBox.prop('checked', false);
 
@@ -195,8 +198,8 @@ var SelectCountryTableAPI = function () {
      * Add event for remove button to remove row from array with all selected items.
      */
     this.addRemoveButtonClickHandler = function () {
-        var self = this,
-            selectedTable = this.$selectedCountriesTable;
+        var self = this;
+        var selectedTable = this.$selectedCountriesTable;
 
         selectedTable.on('click', this.removeBtnSelector, function (e) {
             e.preventDefault();
